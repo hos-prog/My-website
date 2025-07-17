@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hosama Adem | Portfolio</title>
+
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Custom CSS (Optional for style tweaks) -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Hosama Adem</h1>
+      <nav>
+        <a href="#about" class="mx-2 hover:text-blue-500 transition">About</a>
+        <a href="#projects" class="mx-2 hover:text-blue-500 transition">Projects</a>
+        <a href="#certificates" class="mx-2 hover:text-blue-500 transition">Certificates</a>
+        <a href="#contact" class="mx-2 hover:text-blue-500 transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="text-center py-20 bg-blue-50" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-4 hero-title">Hi, I'm Hosama 👋</h2>
+    <p class="text-lg max-w-2xl mx-auto mb-6">I’m a passionate Python and Fullstack Developer focused on building beautiful and functional web experiences.</p>
+    <a href="#projects" class="button-glow px-6 py-3 rounded">See My Work</a>
+  </section>
+
+  <!-- About Me -->
+  <section id="about" class="py-16 px-4 max-w-4xl mx-auto" data-aos="fade-right">
+    <h3 class="text-3xl font-bold mb-4">About Me</h3>
+    <p class="text-lg text-gray-700 leading-relaxed">
+      Passionate about turning ideas into impact, I specialize in web development, content creation, and digital solutions that drive results. With a strong foundation in coding, creative thinking, and freelance strategy, I’m dedicated to helping clients grow through smart tools, clean design, and honest collaboration.
+    </p>
+  </section>
+
+  <!-- GitHub Projects -->
+  <section id="projects" class="py-16 bg-white px-4">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">GitHub Projects</h3>
+      <div id="github-projects" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </div>
+  </section>
+
+  <!-- Certificates -->
+  <section id="certificates" class="py-16 px-4 bg-gray-100">
+    <div class="max-w-6xl mx-auto" data-aos="fade-up">
+      <h3 class="text-3xl font-bold mb-8 text-center">Certificates</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Certificate 1 -->
+        <div class="bg-white p-4 rounded-lg shadow-md card">
+          <img src="https://i.imgur.com/placeholder1.png" alt="Generative AI Certificate" class="rounded mb-4">
+          <h4 class="text-xl font-semibold mb-2">Generative AI: The Evolution of Thoughtful Online Search</h4>
+          <p class="text-gray-600 mb-2">LinkedIn Learning · Mar 30, 2025</p>
+          <p class="text-sm text-gray-500">Skills: Search Engine Tech, Generative AI, AI for Business</p>
+        </div>
+
+        <!-- Certificate 2 -->
+        <div class="bg-white p-4 rounded-lg shadow-md card">
+          <img src="https://i.imgur.com/placeholder2.png" alt="Microsoft Copilot Certificate" class="rounded mb-4">
+          <h4 class="text-xl font-semibold mb-2">Streamlining Your Work with Microsoft Copilot</h4>
+          <p class="text-gray-600 mb-2">LinkedIn Learning · Apr 01, 2025</p>
+          <p class="text-sm text-gray-500">Skills: AI Productivity, Copilot, Generative AI</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 px-4 bg-blue-50" data-aos="fade-up">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-3xl font-bold mb-4 text-center">Contact Me</h3>
+      <form class="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded" required>
+        <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded" required>
+        <textarea placeholder="Your Message" class="w-full p-3 border border-gray-300 rounded h-32" required></textarea>
+        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center py-6 border-t">
+    <p>&copy; 2025 Hosama. All rights reserved. | <a href="https://github.com/hos-prog" target="_blank" class="text-blue-600 hover:underline">GitHub</a></p>
+  </footer>
+
+  <!-- AOS Animation -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // GitHub Projects Fetcher
+    const username = "hos-prog";
+    const maxRepos = 6;
+
+    fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
+      .then(res => res.json())
+      .then(repos => {
+        const container = document.getElementById("github-projects");
+        repos.slice(0, maxRepos).forEach(repo => {
+          const card = document.createElement("div");
+          card.className = "bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg transition card";
+          card.setAttribute("data-aos", "fade-up");
+          card.innerHTML = `
+            <h4 class="text-xl font-semibold mb-2">${repo.name}</h4>
+            <p class="text-gray-700 mb-2">${repo.description || "No description provided."}</p>
+            <a href="${repo.html_url}" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+          `;
+          container.appendChild(card);
+        });
+      });
+  </script>
+</body>
+  </html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hosama Adem | Portfolio</title>
+
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Custom CSS (Optional for style tweaks) -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Hosama Adem</h1>
+      <nav>
+        <a href="#about" class="mx-2 hover:text-blue-500 transition">About</a>
+        <a href="#projects" class="mx-2 hover:text-blue-500 transition">Projects</a>
+        <a href="#certificates" class="mx-2 hover:text-blue-500 transition">Certificates</a>
+        <a href="#contact" class="mx-2 hover:text-blue-500 transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="text-center py-20 bg-blue-50" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-4 hero-title">Hi, I'm Hosama 👋</h2>
+    <p class="text-lg max-w-2xl mx-auto mb-6">I’m a passionate Python and Fullstack Developer focused on building beautiful and functional web experiences.</p>
+    <a href="#projects" class="button-glow px-6 py-3 rounded">See My Work</a>
+  </section>
+
+  <!-- About Me -->
+  <section id="about" class="py-16 px-4 max-w-4xl mx-auto" data-aos="fade-right">
+    <h3 class="text-3xl font-bold mb-4">About Me</h3>
+    <p class="text-lg text-gray-700 leading-relaxed">
+      Passionate about turning ideas into impact, I specialize in web development, content creation, and digital solutions that drive results. With a strong foundation in coding, creative thinking, and freelance strategy, I’m dedicated to helping clients grow through smart tools, clean design, and honest collaboration.
+    </p>
+  </section>
+
+  <!-- GitHub Projects -->
+  <section id="projects" class="py-16 bg-white px-4">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">GitHub Projects</h3>
+      <div id="github-projects" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </div>
+  </section>
+
+  <!-- Certificates -->
+  <section id="certificates" class="py-16 px-4 bg-gray-100">
+    <div class="max-w-6xl mx-auto" data-aos="fade-up">
+      <h3 class="text-3xl font-bold mb-8 text-center">Certificates</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Certificate 1 -->
+        <div class="bg-white p-4 rounded-lg shadow-md card">
+          <img src="https://i.imgur.com/placeholder1.png" alt="Generative AI Certificate" class="rounded mb-4">
+          <h4 class="text-xl font-semibold mb-2">Generative AI: The Evolution of Thoughtful Online Search</h4>
+          <p class="text-gray-600 mb-2">LinkedIn Learning · Mar 30, 2025</p>
+          <p class="text-sm text-gray-500">Skills: Search Engine Tech, Generative AI, AI for Business</p>
+        </div>
+
+        <!-- Certificate 2 -->
+        <div class="bg-white p-4 rounded-lg shadow-md card">
+          <img src="https://i.imgur.com/placeholder2.png" alt="Microsoft Copilot Certificate" class="rounded mb-4">
+          <h4 class="text-xl font-semibold mb-2">Streamlining Your Work with Microsoft Copilot</h4>
+          <p class="text-gray-600 mb-2">LinkedIn Learning · Apr 01, 2025</p>
+          <p class="text-sm text-gray-500">Skills: AI Productivity, Copilot, Generative AI</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 px-4 bg-blue-50" data-aos="fade-up">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-3xl font-bold mb-4 text-center">Contact Me</h3>
+      <form class="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded" required>
+        <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded" required>
+        <textarea placeholder="Your Message" class="w-full p-3 border border-gray-300 rounded h-32" required></textarea>
+        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center py-6 border-t">
+    <p>&copy; 2025 Hosama. All rights reserved. | <a href="https://github.com/hos-prog" target="_blank" class="text-blue-600 hover:underline">GitHub</a></p>
+  </footer>
+
+  <!-- AOS Animation -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // GitHub Projects Fetcher
+    const username = "hos-prog";
+    const maxRepos = 6;
+
+    fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
+      .then(res => res.json())
+      .then(repos => {
+        const container = document.getElementById("github-projects");
+        repos.slice(0, maxRepos).forEach(repo => {
+          const card = document.createElement("div");
+          card.className = "bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg transition card";
+          card.setAttribute("data-aos", "fade-up");
+          card.innerHTML = `
+            <h4 class="text-xl font-semibold mb-2">${repo.name}</h4>
+            <p class="text-gray-700 mb-2">${repo.description || "No description provided."}</p>
+            <a href="${repo.html_url}" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+          `;
+          container.appendChild(card);
+        });
+      });
+  </script>
+</body>
+</html>
